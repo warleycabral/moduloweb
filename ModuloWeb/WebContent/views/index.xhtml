@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:c="http://java.sun.com/jsp/jstl/core"
+ 		xmlns:f="http://java.sun.com/jsf/core"
+ 		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui">
+		<f:view contentType="text/html">
+			<h:head>
+				<title>TCC - Modulo Web</title>
+		<!-- 		<script type="text/javascript" src="#{request.contextPath}/recursos/js/application.js"></script> -->
+				<link type="text/css" rel="stylesheet" href="#{request.contextPath}/recursos/css/main.css" />
+				<style> 
+			    <!--
+				.ui-inputfield { 
+					 height: 14px; 
+	 				 width: 120px; 
+ 				}
+ 				.ui-widget-contents{
+ 					background: url("/ModuloWeb/javax.faces.resource/images/ui-bg_highlight-hard_100_f2f5f7_1x100_p.png.jsf?ln=primefaces-cupertino") repeat-x scroll 50% top #F2F5F7;
+    				border-style: none;
+    				color: #362B36;
+    				position: relative; 
+				    height:31px; 
+				    background-color: #E3F1FA;   
+				    width:50%; 
+				    display:block;
+				    border-top-left-radius: 1px; 
+				    border-bottom-left-radius: 6px;
+                    font-weight: normal;
+                    float: left;
+ 				}
+			    -->
+				a img { 
+				border-width:0; 
+				} 
+			   </style>
+			</h:head>
+			<h:body>
+				<div class="pagewidth">
+					<div class="header">
+<!-- 						<img style="vertical-align: bottom; margin-top: 17px; margin-left: 17px;"  src="#{request.contextPath}/recursos/images/logo.gif"/> -->
+					</div>
+					<div class="interheader">
+						<h:form>
+						<h:panelGroup rendered="#{!contextoBean.existeUsuarioLogado}">
+							<p:spacer height="25px" width="35px"/>
+							<h:commandLink ajax="false" action="#{csu11Bean.goHome}" value="#{lang.menuHome}" style="text-decoration: none; color: #2779AA; font-weight: bold; font-family: Arial;"/>
+							<p:spacer height="25px" width="35px"/>
+							<h:commandLink ajax="false" action="#{csu11Bean.cadastros}" value="#{lang.menuFaleConosco}" style="text-decoration: none; color: #2779AA; font-weight: bold; font-family: Arial;"/>
+							<p:spacer height="25px" width="185px"/>		
+							<h:outputLabel value="#{lang.labelLogin}:" style="margin-right: 8px; font-size: 11px; color: #2779AA; font-style: italic; font-family: Arial;"/>				
+							<p:inputText style="height: 14px; width: 120px; font-size: 11px; font-family: Arial;" value="#{csu11Bean.login}"/>
+							<h:outputLabel value="#{lang.labelPassword}:" style="margin-right: 8px; font-size: 11px; color: #2779AA; font-style: italic; font-family: Arial;"/>				
+							<p:password feedback="false" value="#{csu11Bean.senha}"/>	
+							<p:spacer width="2px"/>
+							<p:commandLink style="text-decoration:none;" ajax="false" action="#{csu11Bean.logar}">
+								<img style="vertical-align: bottom; margin-bottom: 1px;"  src="#{request.contextPath}/recursos/images/login-icon.png"/>
+							</p:commandLink>
+						</h:panelGroup>
+						<!-- 		QUANDO USUÁRIO LOGADO		 -->
+						<h:panelGroup rendered="#{contextoBean.existeUsuarioLogado}">
+							<p:menubar styleClass="ui-widget-contents" model="#{contextoBean.model}" >
+						    </p:menubar>  
+						</h:panelGroup>
+						
+						</h:form>	
+					</div>
+					<div class="maincol">
+						<ui:insert name="conteudo">
+						
+							<h:form id="formPrincipal">
+								<h:outputLabel value="#{lang.labelBoasVindas}" style="font-size: 11px; color: #2779AA; font-style: italic; font-family: Arial;" rendered="#{contextoBean.existeUsuarioLogado}"/>				
+								<h:outputLabel value="#{contextoBean.usuarioLogado.nome}" style="font-size: 11px; color: #2779AA; font-style: italic; font-family: Arial;" rendered="#{contextoBean.existeUsuarioLogado}"/>				
+								<p:spacer width="2px"/>
+								<br/><br/>
+								<p:commandButton value="CSU01"  immediate="true" ajax="false" action="#{csu01Bean.csu01}" rendered="#{contextoBean.existeUsuarioLogado}"></p:commandButton>
+								<p:commandButton value="Monitor"  immediate="true" ajax="false" action="#{monitorBean.monitor}" rendered="#{contextoBean.existeUsuarioLogado}"></p:commandButton>
+								<p:commandButton value="PDF"  immediate="true" ajax="false" action="#{csu04Bean.csu04}" rendered="#{contextoBean.existeUsuarioLogado}"></p:commandButton>
+							</h:form>
+							
+						</ui:insert>
+					</div>
+				</div>
+			</h:body>
+		</f:view>
+</html>

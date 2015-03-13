@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+<!-- 	#######################################	Dialeto para banco de dados MySql ########################################### -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+
+<!-- 	#######################################	Configurações diretas ########################################### -->
+<!-- 		Banco de dados MYSQL, utilizado para desenvolvimento -->
+<!--             <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> -->
+<!-- 			<property name="hibernate.connection.datasource">jdbc/taxi</property> -->
+               
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/sistxweb_db</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+<!-- try -->
+<!-- 		Outras configurações -->
+		<property name="current_session_context_class">thread</property>
+<!-- 		<property name="hibernate.hbm2ddl.auto">create</property> -->
+		
+<!-- 		Usando as configurações do C3PO para poll de conexões -->
+		<property name="c3po.min_size">5</property>
+		<property name="c3po.max_size">50</property>
+		<property name="c3po.timeout">300</property>
+		<property name="c3po.max_statements">100</property>
+		<property name="c3po.idle_test_periodo">3000</property>
+		
+<!-- 		Configurações de Debug -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="generate_statistics">false</property>
+		<property name="use_sql_comments">false</property>
+
+<!-- 		Mapeamento das Classes Que Serão Gerenciadas Pelo Hibernate -->
+		<mapping class="br.com.sistxweb.model.Carro" />
+		<mapping class="br.com.sistxweb.model.Cliente" />
+		<mapping class="br.com.sistxweb.model.Cooperativa" />
+		<mapping class="br.com.sistxweb.model.Corrida" />
+		<mapping class="br.com.sistxweb.model.Endereco" />
+		<mapping class="br.com.sistxweb.model.Perfil" />
+		<mapping class="br.com.sistxweb.model.Taxista" />
+		<mapping class="br.com.sistxweb.model.Telefone" />
+		<mapping class="br.com.sistxweb.model.Usuario" />
+	</session-factory>
+</hibernate-configuration>

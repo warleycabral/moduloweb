@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view locale="#{seg07Bean.idioma}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:composition template="/views/layout/main.xhtml">
+	<ui:define name="conteudo">
+		<style> 
+		    <!--
+			.ui-inputfield { 
+				 height: 18px; 
+				}
+		    -->
+	    </style>
+		<h:form id="formPrincipal">
+			<div class="coluna_container_80"><br/></div>
+			
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton type="button" icon="ui-icon-home"></p:commandButton>
+					<p:commandButton type="button" icon="ui-icon-triangle-1-w" value="#{lang.btn_back}"></p:commandButton>
+				</p:toolbarGroup>
+				<p:toolbarGroup align="left" styleClass="titulo">
+					#{lang.csu01_tituloPrincipal} 
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+				
+					<p:commandButton immediate="true" ajax="false" action="#{csu01Bean.goCancelEdit}" value="#{lang.btn_cancel}"></p:commandButton>
+					<p:commandButton immediate="false" ajax="false" action="#{csu01Bean.update}" value="#{lang.btn_save}"></p:commandButton>
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<div class="coluna_container_80"><br/></div>
+			<p:messages id="message"></p:messages>
+			<div class="coluna_container_80">
+				<div class="coluna_32">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_nomeCompletoTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_23">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_cnhTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_24">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_dataNascimentoTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_32">
+					<p:inputText disabled="false" required="true" requiredMessage="#{lang.csu11_co_nomeTaxista}" styleClass="input_28" value="#{csu01Bean.taxista.nome}"></p:inputText>
+				</div>		
+				<div class="coluna_23">			
+					<p:inputText disabled="false" required="false" styleClass="input_19" value="#{csu01Bean.taxista.cnh}"></p:inputText>
+				</div>
+				<div class="coluna_24">			
+					<p:calendar disabled="false" required="true" requiredMessage="#{lang.csu11_co_dataNascimentoTaxista}" pattern="dd/MM/yyyy" styleClass="input_22" value="#{csu01Bean.taxista.dataNascimento}"></p:calendar>
+				</div>
+				<div class="coluna_24">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_telefoneTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_56">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_enderecoTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_24">
+					<p:inputText disabled="false" required="true" requiredMessage="#{lang.csu11_co_telefoneTaxista}" styleClass="input_20" value="#{csu01Bean.taxista.telefone}"></p:inputText>
+				</div>
+				<div class="coluna_56">
+					<p:inputText disabled="false" required="true" requiredMessage="#{lang.csu11_co_enderecoTaxista}" styleClass="input_54" value="#{csu01Bean.taxista.endereco}"></p:inputText>
+				</div>
+				
+				<div class="coluna_80">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_CooperativaTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_80">
+					<h:inputHidden id="inputHiddenCooperativa" style="float: left;" disabled="false" required="true" requiredMessage="#{lang.csu11_co_cooperativaTaxista}" styleClass="input_47" value="#{csu01Bean.taxista.cooperativa.nome}"/>
+					<p:inputText id="inputCooperativa" style="float: left;" disabled="true" required="true" requiredMessage="#{lang.csu11_co_cooperativaTaxista}" styleClass="input_47" value="#{csu01Bean.taxista.cooperativa.nome}"></p:inputText>
+					<p:commandButton style="height: 1.6em; width: 2.2em; float: inherit; margin-left:2px;" styleClass="buttonTableSlave" type="button" icon="ui-icon-search" onclick="dlgBuscaCooperativa.show();"></p:commandButton>
+				</div>
+				<div class="coluna_28">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_emailTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_52">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_loginTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_28">			
+					<p:inputText disabled="false" required="true" requiredMessage="#{lang.csu11_co_emailTaxista}" styleClass="input_23" value="#{csu01Bean.taxista.email}"></p:inputText>
+				</div>
+				<div class="coluna_52">			
+					<p:inputText disabled="false" required="true" requiredMessage="#{lang.csu11_co_loginTaxista}" styleClass="input_23" value="#{csu01Bean.taxista.login}"></p:inputText>
+				</div>
+				<div class="coluna_28">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_senhaTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_52">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_confirmacaoSenhaTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_28">			
+					<p:password disabled="false" required="true" requiredMessage="#{lang.csu11_co_senhaTaxista}" style="width:10px;" value="#{csu01Bean.senhaTaxista}" ></p:password>
+				</div>
+				<div class="coluna_52">			
+					<p:password disabled="false"  required="true" requiredMessage="#{lang.csu11_co_confirmacaoSenhaTaxista}" styleClass="input_20" value="#{csu01Bean.confirmacaoSenhaTaxista}"></p:password>
+				</div>
+				<p:spacer height="20px"></p:spacer>
+				<div class="coluna_80">
+					<p:dataTable id="tableCarro" var="carro" paginator="true" rendered="false"
+					paginatorPosition="bottom" selectionMode="single" rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+	            		<div class="coluna_45">
+							<div style="padding-top: 7px;padding-bottom: 7px;text-align: left;">
+								<h:outputLabel styleClass="titulo" value="#{lang.csu01_subTitulo}" />
+							</div>
+						</div>
+						<div class="coluna_32">
+							<p:commandButton styleClass="buttonTableSlave" type="button" icon="ui-icon-trash"></p:commandButton>
+							<p:commandButton styleClass="buttonTableSlave" type="button" icon="ui-icon-plus"></p:commandButton>
+						</div>
+        			</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Nome" />
+						</f:facet>
+						<h:outputText value="João Silva" />
+					</p:column>
+					</p:dataTable>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+	</ui:composition>
+</f:view>

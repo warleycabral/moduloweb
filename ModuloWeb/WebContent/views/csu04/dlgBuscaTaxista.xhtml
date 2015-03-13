@@ -1,0 +1,53 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+>
+		<p:dialog style="position: absolute;" closable="false" header="Buscar Taxista" 
+		  		   appendToBody="true" widgetVar="dlgBuscaTaxista" modal="true" 
+		           width="550" minHeight="210" resizable="false" closeOnEscape="false">      			
+    			
+    			<h:form id="formBuscaTaxista" prependId="false">
+    			<div class="dialog_container_18">
+          			<div>
+          				<h:outputText class="label" style="width: 50px; padding-right: 10px;" value="Nome.:" />
+          			</div> 
+          			<div>
+            			<p:inputText value="#{csu04Bean.nomeTaxistaBusca}" maxlength="128"/>
+	          			<p:commandButton update="tableTaxista,formBuscaTaxista" value="#{msg.btn_Filtrar}" actionListener="#{csu04Bean.filtrarTaxistas}" icon="ui-icon ui-icon-search" style="float:right;"/>  
+          			</div>
+          			<div>
+          				<br/>
+          			</div> 
+          			<div class="dialog_grid_18">
+						<p:dataTable emptyMessage="Nenhum dado a ser exibido!" id="tableTaxista" paginatorPosition="bottom"
+							var="tax" value="#{csu04Bean.listaTaxista}" paginator="true" rows="5"
+							selectionMode="single" selection="#{csu04Bean.taxistaTemp}" 
+							dynamic="true" pageLinks="4" 
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15">
+							<p:column sortBy="#{tax.nome}">
+								<f:facet name="header">
+									<h:outputText value="Nome Taxista" />
+								</f:facet>
+								<h:outputText value="#{tax.nome}" />
+							</p:column>
+							<p:column sortBy="#{tax.email}">
+								<f:facet name="header">
+									<h:outputText value="Email Taxista" />
+								</f:facet>
+								<h:outputText value="#{tax.email}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+  				<div><br/></div>
+        			<div class="button" align="right">
+    					<p:commandButton ajax="true" oncomplete="dlgBuscaTaxista.hide()" update=":formRelatorioTax" action="#{csu04Bean.selecionaTaxista}"  value="Selecionar"/> 
+    					<p:commandButton update=":formRelatorioTax" value="Cancelar" actionListener="#{poupancaBean.limpaLista}" oncomplete="dlgBuscaTaxista.hide();"/>
+    				</div>
+    			</div>
+    			</h:form>			
+			</p:dialog>  
+</f:view>

@@ -1,0 +1,82 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+>
+		<p:dialog style="position: absolute;" closable="false" header="Parametrizar Relatório" 
+		  		   appendToBody="true" widgetVar="dlgRelatorio" modal="true" 
+		           width="600" minHeight="400" resizable="false" closeOnEscape="true">      			
+    			<h:form id="formRelatorio" prependId="false">
+    			<div class="coluna_container_40">
+          			<div align="left">
+          				<h:outputText class="label" style="width: 50px; padding-right: 10px;" value="Status.:" />
+          			</div> 
+          			<div align="left">
+            			<p:selectOneMenu value="#{csu04Bean.statusBusca}">
+            				<f:selectItem itemLabel="Pendente" itemValue="Pendente"/>
+            				<f:selectItem itemLabel="Em Andamento" itemValue="Andamento"/>
+            				<f:selectItem itemLabel="Concluida" itemValue="Concluida"/>
+            				<f:selectItem itemLabel="Cancelada" itemValue="Cancelada"/>
+            			</p:selectOneMenu>
+          			</div>
+        			<div align="right">
+    					<p:commandButton oncomplete="dlgRelatorio.hide()" update=":formPrincipal" ajax="false" action="#{csu04Bean.gerarPDF}"  value="Gerar"/> 
+    					<p:commandButton value="Cancelar"  oncomplete="dlgRelatorio.hide();"/>
+    				</div>
+				</div>
+    			</h:form>			
+			</p:dialog>  
+			
+			<p:dialog style="position: absolute;" closable="false" header="Relatório Por Taxista" 
+		  		   appendToBody="true" widgetVar="dlgRelatorioPorTaxista" modal="true" 
+		           width="600" minHeight="400" resizable="false" closeOnEscape="true">      			
+    			<h:form id="formRelatorioTax" prependId="false">
+    			<div class="coluna_container_40">
+          			<div align="left">
+          				<h:outputText class="label" style="width: 50px; padding-right: 10px;" value="Taxista.:" />
+          			</div> 
+          			<div align="left">
+          			    <h:inputHidden value="#{csu04Bean.taxista.nome}"></h:inputHidden>
+            			<p:inputText disabled="true" value="#{csu04Bean.taxista.nome}"></p:inputText>
+            			<p:commandButton type="button" 
+            					ajax="true"  
+            					onclick="dlgBuscaTaxista.show()" 
+            					icon="ui-icon-search"/>
+          			</div>
+        			<div align="right">
+    					<p:commandButton oncomplete="dlgRelatorioPorTaxista.hide()" update=":formPrincipal" ajax="false" action="#{csu04Bean.gerarPDF}"  value="Gerar"/> 
+    					<p:commandButton value="Cancelar"  oncomplete="dlgRelatorioPorTaxista.hide();"/>
+    				</div>
+				</div>
+    			</h:form>			
+			</p:dialog>  
+			
+			<p:dialog style="position: absolute;" closable="false" header="Relatório Por Cliente" 
+		  		   appendToBody="true" widgetVar="dlgRelatorioPorCliente" modal="true" 
+		           width="600" minHeight="400" resizable="false" closeOnEscape="true">      			
+    			<h:form id="formRelatorioCli" prependId="false">
+    			<div class="coluna_container_40">
+          			<div align="left">
+          				<h:outputText class="label" style="width: 50px; padding-right: 10px;" value="Cliente.:" />
+          			</div> 
+          			<div align="left">
+          			    <h:inputHidden value="#{csu04Bean.cliente.nome}"></h:inputHidden>
+            			<p:inputText disabled="true" value="#{csu04Bean.cliente.nome}"></p:inputText>
+            			<p:commandButton type="button" 
+            					ajax="true"  
+            					onclick="dlgBuscaCliente.show()" 
+            					icon="ui-icon-search"/>
+          			</div>
+        			<div align="right">
+    					<p:commandButton oncomplete="dlgRelatorioPorCliente.hide()" update=":formPrincipal" ajax="false" action="#{csu04Bean.gerarPDF}"  value="Gerar"/> 
+    					<p:commandButton value="Cancelar"  oncomplete="dlgRelatorioPorCliente.hide();"/>
+    				</div>
+				</div>
+    			</h:form>			
+			</p:dialog>  
+			
+			<ui:include src="/views/csu04/dlgBuscaTaxista.xhtml"></ui:include>
+			<ui:include src="/views/csu04/dlgBuscaCliente.xhtml"></ui:include>
+</f:view>

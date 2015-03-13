@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view locale="#{seg07Bean.idioma}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:composition template="/views/layout/main.xhtml">
+	<ui:define name="conteudo">
+		<style> 
+		    <!--
+			.ui-inputfield { 
+				 height: 18px; 
+				}
+		    -->
+	    </style>
+		<h:form id="formPrincipal">
+			<div class="coluna_container_80"><br/></div>
+			
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton type="button" icon="ui-icon-home"></p:commandButton>
+					<p:commandButton type="button" icon="ui-icon-triangle-1-w" value="#{lang.btn_back}"></p:commandButton>
+				</p:toolbarGroup>
+				<p:toolbarGroup align="left" styleClass="titulo">
+					#{lang.csu01_tituloPrincipal}
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+				
+				<p:menuButton value="#{lang.btn_options}" style="margin-top: 2px;">
+					<p:menuitem value="#{lang.btn_edit}" icon="ui-icon-pencil" immediate="true" ajax="false" action="#{contextoBean.goEditTaxista}"></p:menuitem>
+				</p:menuButton>
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<div class="coluna_container_80"><br/></div>
+			<p:messages id="message"></p:messages>
+			<div class="coluna_container_80">
+				<div class="coluna_32">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_nomeCompletoTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_23">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_cnhTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_24">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_dataNascimentoTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_32">
+					<p:inputText disabled="true" required="true" requiredMessage="#{lang.csu11_co_nomeTaxista}" styleClass="input_28" value="#{contextoBean.taxistaLogado.nome}"></p:inputText>
+				</div>		
+				<div class="coluna_23">			
+					<p:inputText disabled="true" required="false" styleClass="input_19" value="#{contextoBean.taxistaLogado.cnh}"></p:inputText>
+				</div>
+				<div class="coluna_24">			
+					<p:calendar disabled="true" required="true" requiredMessage="#{lang.csu11_co_dataNascimentoTaxista}" pattern="dd/MM/yyyy" styleClass="input_22" value="#{contextoBean.taxistaLogado.dataNascimento}"></p:calendar>
+				</div>
+				<div class="coluna_24">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_telefoneTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_56">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_enderecoTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_24">
+					<p:inputText disabled="true" required="true" requiredMessage="#{lang.csu11_co_telefoneTaxista}" styleClass="input_20" value="#{contextoBean.taxistaLogado.telefone}"></p:inputText>
+				</div>
+				<div class="coluna_56">
+					<p:inputText disabled="true" required="true" requiredMessage="#{lang.csu11_co_enderecoTaxista}" styleClass="input_54" value="#{contextoBean.taxistaLogado.endereco}"></p:inputText>
+				</div>
+				
+				<div class="coluna_28">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_emailTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_52">
+					<h:outputLabel styleClass="label" value="#{lang.csu11_loginTaxista}"></h:outputLabel>
+				</div>
+				<div class="coluna_28">			
+					<p:inputText disabled="true" required="true" requiredMessage="#{lang.csu11_co_emailTaxista}" styleClass="input_23" value="#{contextoBean.taxistaLogado.email}"></p:inputText>
+				</div>
+				<div class="coluna_52">			
+					<p:inputText disabled="true" required="true" requiredMessage="#{lang.csu11_co_loginTaxista}" styleClass="input_23" value="#{contextoBean.taxistaLogado.login}"></p:inputText>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+	</ui:composition>
+</f:view>

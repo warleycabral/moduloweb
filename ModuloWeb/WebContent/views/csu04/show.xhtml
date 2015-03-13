@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view locale="#{seg07Bean.idioma}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:composition template="/views/layout/main.xhtml">
+	<ui:define name="conteudo">
+		<style> 
+		    <!--
+			.ui-inputfield { 
+				 height: 18px; 
+				}
+		    -->
+	    </style>
+		<h:form id="formPrincipal">
+			<div class="coluna_container_80"><br/></div>
+			
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton type="button" icon="ui-icon-home"></p:commandButton>
+					<p:commandButton onclick="window.history.back()"  type="button" icon="ui-icon-triangle-1-w" value="#{lang.btn_back}"></p:commandButton>
+				</p:toolbarGroup>
+				<p:toolbarGroup align="left" styleClass="titulo">
+					#{lang.csu04_tituloPrincipal}
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+				
+				<p:menuButton value="#{lang.btn_options}" style="margin-top: 2px;">
+					<p:menuitem value="Relatório/Status" icon="ui-icon-plus" immediate="true" ajax="true" onclick="dlgRelatorio.show()" actionListener="#{csu04Bean.limparParametrosRelatorio}"></p:menuitem>
+					<p:menuitem value="Relatório/Taxista" icon="ui-icon-plus" immediate="true" ajax="true" onclick="dlgRelatorioPorTaxista.show()" actionListener="#{csu04Bean.limparParametrosRelatorio}"></p:menuitem>
+					<p:menuitem value="Relatório/Cliente" icon="ui-icon-plus" immediate="true" ajax="true" onclick="dlgRelatorioPorCliente.show()" actionListener="#{csu04Bean.limparParametrosRelatorio}"></p:menuitem>
+				</p:menuButton>
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<div class="coluna_container_80"><br/></div>
+			<p:messages id="message"></p:messages>
+			<div class="coluna_container_80">
+				
+			</div>
+		</h:form>
+		<ui:include src="/views/csu04/dialogos.xhtml"></ui:include>
+	</ui:define>
+	</ui:composition>
+</f:view>
