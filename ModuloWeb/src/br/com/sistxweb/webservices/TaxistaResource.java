@@ -87,4 +87,4 @@ public class TaxistaResource {
      return gson.toJson(taxDao.readList());
     }
 	  
-}
+ }
